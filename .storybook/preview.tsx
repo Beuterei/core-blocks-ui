@@ -42,8 +42,10 @@ const preview: Preview = {
   },
   decorators: [withThemeByDataAttribute({
     themes: {
-      light: "light",
-      dark: "dark",
+      Light: "light",
+      Dark: "dark",
+      "Light Green": "light-green",
+      "Dark Green": "dark-green",
     },
     defaultTheme: "light",
     attributeName: 'data-mode',
