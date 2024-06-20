@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react";
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
+import * as React from 'react';
+import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/blocks';
 
 import '@/index.css';
 
@@ -24,6 +26,19 @@ const preview: Preview = {
         },
       },
     actions: { disable: true },
+    docs: {
+        page: () => (
+          <>
+            <Title />
+            <Subtitle />
+            <Description />
+            For all native elements the normal DOM api is supported, this documentation focuses on the customized DOM api.
+            <Primary />
+            <Controls />
+            <Stories />
+          </>
+        ),
+      },
   },
   decorators: [withThemeByDataAttribute({
     themes: {

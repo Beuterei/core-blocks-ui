@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@/components/ui/Button";
-import { ChevronRightIcon, HeartIcon, LoaderCircleIcon } from "lucide-react";
+import { Button, type ButtonProps } from '@/components/Button/Button';
+import { type Meta, type StoryObj } from '@storybook/react';
+import { ChevronRightIcon } from 'lucide-react';
 
 const meta = {
-    title: "Components/Button",
+    title: 'Components/Button',
     component: Button,
     args: {
-        children: "Text",
-    }
-} satisfies Meta<typeof Button>;
+        children: 'Text',
+    },
+} satisfies Meta<ButtonProps>;
 
 export default meta;
 
@@ -18,58 +18,52 @@ export const Primary: Story = {};
 
 export const Secondary: Story = {
     args: {
-        variant: "secondary",
+        variant: 'secondary',
     },
 };
 
 export const Destructive: Story = {
     args: {
-        variant: "destructive",
+        variant: 'destructive',
     },
 };
 
 export const Outline: Story = {
     args: {
-        variant: "outline",
+        variant: 'outline',
     },
 };
 
 export const Ghost: Story = {
     args: {
-        variant: "ghost",
+        variant: 'ghost',
     },
 };
 
 export const Link: Story = {
     args: {
-        variant: "link",
+        variant: 'link',
     },
 };
 
 export const Icon: Story = {
     args: {
-        variant: "outline",
-        size: "icon",
+        variant: 'outline',
+        size: 'icon',
         children: <ChevronRightIcon />,
-    },
-};
-
-export const WithIcon: Story = {
-    args: {
-        children: <><HeartIcon className="mr-2" />Love</>,
     },
 };
 
 export const Loading: Story = {
     args: {
-        disabled: true,
-        children: <><LoaderCircleIcon className="mr-2 animate-spin" />Loading</>,
+        loading: true,
     },
 };
 
 export const AsChild: Story = {
     args: {
         asChild: true,
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid, react/jsx-no-script-url, no-script-url
         children: <a href="javascript:void(0)">Login</a>,
     },
 };

@@ -1,36 +1,46 @@
 {
-  "extends": ["@beuluis/eslint-config"],
-  "root": true,
-  "overrides": [
-      {
-          "extends": [
-              "@beuluis/eslint-config/typescript",
-              "@beuluis/eslint-config/browser"
-          ],
-          "files": "*.ts",
-          "parserOptions": {
-              "project": "tsconfig.json"
-          }
-      },
-      {
-        "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
-        "extends": ["plugin:storybook/recommended"]
-      },
-      {
-          "extends": ["@beuluis/eslint-config/json"],
-          "files": "*.json"
-      },
-      {
-          "extends": ["@beuluis/eslint-config/yaml"],
-          "files": "*.{yml,yaml}"
-      },
-      {
-          "extends": ["@beuluis/eslint-config/jest"],
-          "files": [
-              "*.?(component-){spec,test}.ts",
-              "**/{__mocks__,__tests__}/**/*.ts",
-              "**/jest.setup.ts"
-          ]
-      }
-  ]
+    "extends": ["@beuluis/eslint-config"],
+    "root": true,
+    "overrides": [
+        {
+            "extends": [
+                "@beuluis/eslint-config/typescript",
+                "@beuluis/eslint-config/browser"
+            ],
+            "files": "*.{ts,tsx}",
+            "parserOptions": {
+                "project": "tsconfig.json"
+            }
+        },
+        {
+            "extends": ["@beuluis/eslint-config/react"],
+            "files": "*.tsx",
+            "rules": {
+                "react/forbid-component-props": "off"
+            }
+        },
+        {
+            "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
+            "extends": ["plugin:storybook/recommended"],
+            "rules": {
+                "canonical/filename-match-exported": "off"
+            }
+          },
+        {
+            "extends": ["@beuluis/eslint-config/json"],
+            "files": "*.json"
+        },
+        {
+            "extends": ["@beuluis/eslint-config/yaml"],
+            "files": "*.{yml,yaml}"
+        },
+        {
+            "extends": ["@beuluis/eslint-config/jest"],
+            "files": [
+                "*.?(component-){spec,test}.{ts,tsx}",
+                "**/{__mocks__,__tests__}/**/*.{ts,tsx}",
+                "**/jest.setup.ts"
+            ]
+        }
+    ]
 }

@@ -1,1 +1,1 @@
-export * from '@/components/ui/Button';
+export * from '@/components/Button/Button';
