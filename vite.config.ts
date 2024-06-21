@@ -1,12 +1,18 @@
-// eslint-disable-next-line canonical/id-match
-import package_ from './package.json';
+import packageJson from './package.json';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
+import viteTsconfigPaths from 'vite-tsconfig-paths';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react()],
+    plugins: [
+        react(),
+        viteTsconfigPaths(),
+        dts({
+            tsconfigPath: './tsconfig.build.json',
+        }),
+    ],
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
@@ -17,10 +23,10 @@ export default defineConfig({
         lib: {
             entry: ['src/main.ts'],
             name: 'CoreBlocksUI',
+            formats: ['es'],
         },
         rollupOptions: {
-            // eslint-disable-next-line canonical/id-match
-            external: Object.keys(package_.peerDependencies || {}),
+            external: Object.keys(packageJson.peerDependencies || {}),
         },
     },
 });

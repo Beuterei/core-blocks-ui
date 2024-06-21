@@ -25,7 +25,13 @@
             "rules": {
                 "canonical/filename-match-exported": "off"
             }
-          },
+        },
+        {
+            "files": ["storybook/**/*"],
+            "rules": {
+                "canonical/filename-match-exported": "off"
+            }
+        },
         {
             "extends": ["@beuluis/eslint-config/json"],
             "files": "*.json"
