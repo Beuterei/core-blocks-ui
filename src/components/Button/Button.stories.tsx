@@ -1,4 +1,5 @@
-import { Button, type ButtonProps } from '@/components/Button/Button';
+import { Button } from '@/components/Button/Button';
+import { withActions } from '@storybook/addon-actions/decorator';
 import { type Meta, type StoryObj } from '@storybook/react';
 import { ChevronRightIcon } from 'lucide-react';
 
@@ -8,7 +9,13 @@ const meta = {
     args: {
         children: 'Text',
     },
-} satisfies Meta<ButtonProps>;
+    parameters: {
+        actions: {
+            handles: ['click'],
+        },
+    },
+    decorators: [withActions],
+} satisfies Meta<typeof Button>;
 
 export default meta;
 

@@ -4,7 +4,6 @@ import {
     SelectGroup,
     SelectItem,
     SelectLabel,
-    type SelectProps,
     SelectTrigger,
     SelectValue,
 } from '@/components/Select/Select';
@@ -12,13 +11,6 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     title: 'Components/Select',
-} satisfies Meta<SelectProps>;
-
-export default meta;
-
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
     render: args => (
         <Select {...args}>
             <SelectTrigger>
@@ -31,7 +23,13 @@ export const Default: Story = {
             </SelectContent>
         </Select>
     ),
-};
+} satisfies Meta<typeof Select>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {};
 
 export const Scrollable: Story = {
     render: args => (

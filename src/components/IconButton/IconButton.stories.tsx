@@ -1,4 +1,4 @@
-import { IconButton, type IconButtonProps } from '@/components/IconButton/IconButton';
+import { IconButton } from '@/components/IconButton/IconButton';
 import { type Meta, type StoryObj } from '@storybook/react';
 import { HeartIcon } from 'lucide-react';
 
@@ -18,7 +18,7 @@ const meta = {
             mapping: { false: '', true: <HeartIcon /> },
         },
     },
-} satisfies Meta<IconButtonProps>;
+} satisfies Meta<typeof IconButton>;
 
 export default meta;
 

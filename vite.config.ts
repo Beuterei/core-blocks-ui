@@ -21,7 +21,7 @@ export default defineConfig({
     build: {
         sourcemap: true,
         lib: {
-            entry: ['src/main.ts'],
+            entry: ['src/main.ts', 'src/twind.config.ts'],
             name: 'CoreBlocksUI',
             formats: ['es'],
         },

@@ -1,16 +1,22 @@
-// eslint-disable-next-line import/no-unassigned-import
-import '@/index.css';
+import { config } from '@/twind.config';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { Controls, Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
 import type { Preview } from '@storybook/react';
+import install from '@twind/with-react';
+
+install(config);
 
 const preview: Preview = {
     parameters: {
-        backgrounds: { disable: true },
+        layout: 'centered',
+        backgrounds: {
+            default: 'theme',
+            values: [{ name: 'theme', value: 'hsl(var(--background))' }],
+        },
         controls: {
             matchers: {
-                color: /(background|color)$/i,
+                color: /(background|color)$/iu,
                 date: /date$/iu,
             },
             expanded: true,
@@ -21,7 +27,6 @@ const preview: Preview = {
                 ...MINIMAL_VIEWPORTS,
             },
         },
-        actions: { disable: true },
         docs: {
             page: () => (
                 <>

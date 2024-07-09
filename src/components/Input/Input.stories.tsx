@@ -1,4 +1,4 @@
-import { Input, type InputProps } from '@/components/Input/Input';
+import { Input } from '@/components/Input/Input';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
@@ -7,7 +7,7 @@ const meta = {
     args: {
         placeholder: 'Text',
     },
-} satisfies Meta<InputProps>;
+} satisfies Meta<typeof Input>;
 
 export default meta;
 

@@ -1,4 +1,4 @@
-import { Checkbox, type CheckboxProps } from '@/components/Checkbox/Checkbox';
+import { Checkbox } from '@/components/Checkbox/Checkbox';
 import { Label } from '@/components/Label/Label';
 import { faker } from '@faker-js/faker';
 import { type Meta, type StoryObj } from '@storybook/react';
@@ -11,7 +11,7 @@ const meta = {
             <Label htmlFor={id}>Accept terms and conditions</Label>
         </div>
     ),
-} satisfies Meta<CheckboxProps>;
+} satisfies Meta<typeof Checkbox>;
 
 export default meta;
 

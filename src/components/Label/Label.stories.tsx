@@ -1,5 +1,5 @@
 import { Input } from '@/components/Input/Input';
-import { Label, type LabelProps } from '@/components/Label/Label';
+import { Label } from '@/components/Label/Label';
 import { faker } from '@faker-js/faker';
 import { type Meta, type StoryObj } from '@storybook/react';
 
@@ -14,7 +14,7 @@ const meta = {
             <Input id={id} placeholder="Email" type="email" />
         </div>
     ),
-} satisfies Meta<LabelProps>;
+} satisfies Meta<typeof Label>;
 
 export default meta;
 
