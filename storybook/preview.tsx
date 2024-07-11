@@ -1,11 +1,9 @@
-import { config } from '@/twind.config';
-import { withThemeByDataAttribute } from '@storybook/addon-themes';
+import theme from '../src/theme';
+import { ThemeProvider } from '@emotion/react';
+import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { Controls, Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
 import type { Preview } from '@storybook/react';
-import install from '@twind/with-react';
-
-install(config);
 
 const preview: Preview = {
     parameters: {
@@ -43,17 +41,15 @@ const preview: Preview = {
         },
     },
     decorators: [
-        withThemeByDataAttribute({
+        withThemeFromJSXProvider({
             themes: {
-                Light: 'light',
-                Dark: 'dark',
-                'Light Green': 'light-green',
-                'Dark Green': 'dark-green',
+                theme,
             },
-            defaultTheme: 'light',
-            attributeName: 'data-mode',
+            defaultTheme: 'theme',
+            Provider: ThemeProvider,
         }),
     ],
+
     tags: ['autodocs'],
 };
 

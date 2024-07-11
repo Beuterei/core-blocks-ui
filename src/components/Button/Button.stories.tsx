@@ -1,3 +1,4 @@
+import { CSSBaseLine } from '../CSSBaseLine/CSSBaseLine';
 import { Button } from '@/components/Button/Button';
 import { withActions } from '@storybook/addon-actions/decorator';
 import { type Meta, type StoryObj } from '@storybook/react';
@@ -14,6 +15,11 @@ const meta = {
             handles: ['click'],
         },
     },
+    render: args => (
+        <CSSBaseLine>
+            <Button {...args} />
+        </CSSBaseLine>
+    ),
     decorators: [withActions],
 } satisfies Meta<typeof Button>;
 
