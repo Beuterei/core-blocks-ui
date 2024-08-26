@@ -1,5 +1,5 @@
 import { Root as LabelPrimitive } from '@radix-ui/react-label';
-import { tx } from '@twind/core';
+import { cx } from '@twind/core';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { type ComponentPropsWithoutRef, type ElementRef, forwardRef } from 'react';
 
@@ -11,8 +11,13 @@ export type LabelProps = ComponentPropsWithoutRef<typeof LabelPrimitive> &
     VariantProps<typeof labelVariants>;
 
 const Label = forwardRef<ElementRef<typeof LabelPrimitive>, LabelProps>(
-    ({ className, ...props }, ref) => (
-        <LabelPrimitive className={tx(labelVariants(), className)} ref={ref} {...props} />
+    ({ className, htmlFor, ...props }, ref) => (
+        <LabelPrimitive
+            className={cx(labelVariants(), className, htmlFor && 'cursor-pointer')}
+            htmlFor={htmlFor}
+            ref={ref}
+            {...props}
+        />
     ),
 );
 

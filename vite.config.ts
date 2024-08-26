@@ -22,7 +22,6 @@ export default defineConfig({
         sourcemap: true,
         lib: {
             entry: ['src/main.ts', 'src/twind.config.ts'],
-            name: 'CoreBlocksUI',
             formats: ['es'],
         },
         rollupOptions: {

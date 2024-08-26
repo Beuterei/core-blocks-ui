@@ -25,22 +25,32 @@
     "build:storybook": "storybook build --config-dir storybook"
   },
   "peerDependencies": {
+    "@twind/core": "^1",
+    "lucide-react": "^0",
     "react": "^18"
   },
+  "browserslist": {
+    "production": [
+      ">0.01%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      ">0.01%",
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
-    "@emotion/react": "11.11.4",
-    "@emotion/styled": "11.11.5",
     "@radix-ui/react-checkbox": "^1.1.0",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-select": "^2.1.0",
     "@radix-ui/react-slot": "^1.0.2",
-    "@twind/core": "1.1.3",
     "@twind/preset-autoprefix": "1.0.7",
     "@twind/preset-tailwind": "1.1.4",
-    "@twind/with-react": "1.1.3",
     "class-variance-authority": "^0.7.0",
-    "lucide-react": "^0.395.0",
-    "tailwindcss-animate": "^1.0.7"
+    "deepmerge": "4.3.1"
   },
   "devDependencies": {
     "@beuluis/eslint-config": "2.0.1",
@@ -48,22 +58,22 @@
     "@storybook/addon-a11y": "8.1.11",
     "@storybook/addon-actions": "8.1.11",
     "@storybook/addon-essentials": "8.1.11",
-    "@storybook/addon-themes": "8.1.11",
     "@storybook/addon-viewport": "8.1.11",
     "@storybook/blocks": "8.1.11",
     "@storybook/react": "8.1.11",
     "@storybook/react-vite": "8.1.11",
     "@storybook/test": "8.1.11",
+    "@twind/core": "1.1.3",
+    "@twind/with-react": "1.1.3",
     "@types/node": "20.14.2",
     "@types/react": "18.2.66",
-    "@typescript-eslint/eslint-plugin": "7.2.0",
-    "@typescript-eslint/parser": "7.2.0",
     "@vitejs/plugin-react": "4.2.1",
     "autoprefixer": "10.4.19",
     "eslint": "8.57.0",
     "eslint-plugin-storybook": "0.8.0",
     "husky": "9.0.11",
     "lint-staged": "15.2.7",
+    "lucide-react": "0.429.0",
     "react": "18.3.1",
     "storybook": "8.1.11",
     "typescript": "5.5.3",

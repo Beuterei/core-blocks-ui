@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import { cx } from '@twind/core';
 import { cva, type VariantProps } from 'class-variance-authority';
@@ -37,24 +36,19 @@ export interface ButtonProps
         VariantProps<typeof buttonVariants> {
     readonly asChild?: boolean;
     readonly loading?: boolean;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    readonly tw?: any;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    (
-        { className, variant, size, asChild = false, children, loading, disabled, tw, ...props },
-        ref,
-    ) => {
+    ({ className, variant, size, asChild = false, children, loading, disabled, ...props }, ref) => {
         const Comp = asChild ? Slot : 'button';
         return (
             <Comp
                 {...props}
-                className={tw(cx(buttonVariants({ variant, size, className })))}
+                className={cx(buttonVariants({ variant, size, className }))}
                 disabled={loading ?? disabled}
                 ref={ref}
             >
-                {loading && <LoaderCircleIcon className="mr-2 animate-spin" />}
+                {loading && <LoaderCircleIcon className={cx('mr-2 animate-spin')} />}
                 <Slottable>{children}</Slottable>
             </Comp>
         );
@@ -62,16 +56,5 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
-
-// const StyledButton = styled(Button)(props => ({
-//     backgroundColor: props.theme.colors.primary,
-//     ...(props.variant === 'outline' && {
-//         borderColor: props.theme.colors.primary,
-//         color: props.theme.colors.primary,
-//     }),
-//     ...(props.size === 'icon' && {
-//         padding: 0,
-//     }),
-// }));
 
 export { Button };

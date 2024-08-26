@@ -5,7 +5,6 @@ const config: StorybookConfig = {
 
     addons: [
         '@storybook/addon-essentials',
-        '@storybook/addon-themes',
         '@storybook/addon-viewport',
         '@storybook/addon-a11y',
         '@storybook/addon-controls',

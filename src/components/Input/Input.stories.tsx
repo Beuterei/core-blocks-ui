@@ -28,8 +28,6 @@ export const File: Story = {
     },
 };
 
-// TODO: Add component composition as different group
-
 export const Disabled: Story = {
     args: {
         disabled: true,

@@ -1,19 +1,28 @@
-import { config } from '@/twind.config';
-import { withThemeByDataAttribute } from '@storybook/addon-themes';
+import { ThemeProvider, useTheme } from '../src/main';
+import { type SupportedThemes, twindConfig } from '@/twind.config';
 import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { Controls, Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
 import type { Preview } from '@storybook/react';
+import { defineConfig } from '@twind/core';
 import install from '@twind/with-react';
+import { type PropsWithChildren, useEffect } from 'react';
 
-install(config);
+install(defineConfig(twindConfig()));
+
+const ThemeSwitcher = ({ children, theme }: PropsWithChildren<{ theme: SupportedThemes }>) => {
+    const { setCurrentTheme } = useTheme();
+
+    useEffect(() => {
+        setCurrentTheme(theme);
+    });
+
+    return children;
+};
 
 const preview: Preview = {
     parameters: {
-        layout: 'centered',
-        backgrounds: {
-            default: 'theme',
-            values: [{ name: 'theme', value: 'hsl(var(--background))' }],
-        },
+        layout: 'fullscreen',
+        backgrounds: { disable: true },
         controls: {
             matchers: {
                 color: /(background|color)$/iu,
@@ -42,17 +51,44 @@ const preview: Preview = {
             ),
         },
     },
-    decorators: [
-        withThemeByDataAttribute({
-            themes: {
-                Light: 'light',
-                Dark: 'dark',
-                'Light Green': 'light-green',
-                'Dark Green': 'dark-green',
+    globalTypes: {
+        theme: {
+            name: 'Theme',
+            description: 'Global theme for components',
+            defaultValue: 'base',
+            toolbar: {
+                icon: 'circlehollow',
+                dynamicTitle: true,
+                items: [
+                    { value: 'base', title: 'Light' },
+                    { value: 'dark', title: 'Dark' },
+                    { value: 'light-green', title: 'Light Green' },
+                    { value: 'dark-green', title: 'Dark Green' },
+                ],
             },
-            defaultTheme: 'light',
-            attributeName: 'data-mode',
-        }),
+        },
+    },
+    decorators: [
+        // eslint-disable-next-line unicorn/prevent-abbreviations
+        (StoryFn, context) => {
+            const theme = context.globals.theme || 'base';
+
+            const containerClass = context.viewMode === 'docs' ? 'min-h-52' : 'h-screen';
+
+            return (
+                <ThemeProvider>
+                    <div
+                        className={
+                            'flex items-center justify-center bg-background p-10 ' + containerClass
+                        }
+                    >
+                        <ThemeSwitcher theme={theme}>
+                            <StoryFn />
+                        </ThemeSwitcher>
+                    </div>
+                </ThemeProvider>
+            );
+        },
     ],
     tags: ['autodocs'],
 };
