@@ -1,4 +1,4 @@
-import { ThemeProvider, useTheme } from '../src/main';
+import { ThemeProvider, useTheme } from '@/main';
 import { type SupportedThemes, twindConfig } from '@/twind.config';
 import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { Controls, Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';

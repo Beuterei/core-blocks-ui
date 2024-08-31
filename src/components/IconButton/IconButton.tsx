@@ -1,4 +1,4 @@
-import { Button, type ButtonProps } from '../Button/Button';
+import { Button, type ButtonProps } from '@/components/Button/Button';
 import type { ReactNode } from 'react';
 
 export type IconButtonProps = ButtonProps & {

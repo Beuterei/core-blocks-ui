@@ -1,4 +1,4 @@
-import { isSupportedTheme, type SupportedThemes } from '../../twind.config';
+import { isSupportedTheme, type SupportedThemes } from '@/twind.config';
 import { cx } from '@twind/core';
 import {
     createContext,

@@ -1,6 +1,6 @@
-import type { SupportedThemes } from '../../twind.config';
-import { Button } from '../Button/Button';
-import { ThemeProvider, useTheme } from './ThemeProvider';
+import { Button } from '@/components/Button/Button';
+import { ThemeProvider, useTheme } from '@/components/ThemeProvider/ThemeProvider';
+import type { SupportedThemes } from '@/twind.config';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const themes: SupportedThemes[] = ['base', 'dark', 'light-green', 'dark-green'];

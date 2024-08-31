@@ -193,7 +193,6 @@ export const twindConfig = (
         },
         preflight,
         rules: [['min-h-(\\d+)', match => ({ minHeight: `${Number(match[1]) / 4}rem` })]],
-        // TODO: presetAutoprefix
         presets: [presetAutoprefix(), presetTailwind(), presetRemToPx()],
     };
 
