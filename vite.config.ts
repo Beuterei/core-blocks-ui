@@ -1,31 +1,38 @@
 import packageJson from './package.json';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import viteTsconfigPaths from 'vite-tsconfig-paths';
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+    build: {
+        lib: {
+            entry: {
+                index: 'src/index.ts',
+                styles: 'src/index.css'
+            },
+            fileName: (format, entryName) => `${entryName}.${format === 'es' ? 'mjs' : 'cjs'}`,
+            formats: ['es', 'cjs'],
+        },
+        outDir: 'dist',
+        rollupOptions: {
+            external: [
+                ...Object.keys(packageJson.dependencies ?? {}),
+                ...Object.keys(packageJson.peerDependencies ?? {}),
+                'react-dom/client',
+                'react/jsx-runtime',
+            ],
+        },
+        sourcemap: true,
+        // TODO: check more
+        cssCodeSplit: true,
+    },
+    define: command === 'build' ? { 'process.env.NODE_ENV': "'production'" } : undefined,
     plugins: [
         react(),
-        viteTsconfigPaths(),
         dts({
             tsconfigPath: './tsconfig.build.json',
         }),
+        tailwindcss(),
     ],
-    resolve: {
-        alias: {
-            '@': path.resolve(__dirname, './src'),
-        },
-    },
-    build: {
-        sourcemap: true,
-        lib: {
-            entry: ['src/main.ts', 'src/twind.config.ts'],
-            formats: ['es'],
-        },
-        rollupOptions: {
-            external: Object.keys(packageJson.peerDependencies || {}),
-        },
-    },
-});
+}));

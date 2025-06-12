@@ -1,16 +1,16 @@
-import { Checkbox } from '@/components/Checkbox/Checkbox';
-import { Label } from '@/components/Label/Label';
+import { Label } from '../Label/Label';
+import { Checkbox } from './Checkbox';
 import { faker } from '@faker-js/faker';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Components/Checkbox',
     render: ({ id = faker.string.uuid(), ...args }) => (
         <div className="flex items-center space-x-2">
             <Checkbox id={id} {...args} />
             <Label htmlFor={id}>Accept terms and conditions</Label>
         </div>
     ),
+    title: 'Components/Checkbox',
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;

@@ -1,12 +1,12 @@
-import { Input } from '@/components/Input/Input';
+import { Input } from './Input';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Components/Input',
-    component: Input,
     args: {
         placeholder: 'Text',
     },
+    component: Input,
+    title: 'Components/Input',
 } satisfies Meta<typeof Input>;
 
 export default meta;
@@ -17,8 +17,8 @@ export const Default: Story = {};
 
 export const Secondary: Story = {
     args: {
-        type: 'email',
         placeholder: 'Email',
+        type: 'email',
     },
 };
 

@@ -1,14 +1,14 @@
-import { Slider } from '@/components/Slider/Slider';
+import { Slider } from './Slider';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Components/Slider',
-    component: Slider,
     args: {
         defaultValue: [50],
         max: 100,
         step: 1,
     },
+    component: Slider,
+    title: 'Components/Slider',
 } satisfies Meta<typeof Slider>;
 
 export default meta;

@@ -1,18 +1,30 @@
-import { isSupportedTheme, type SupportedThemes } from '@/twind.config';
-import { cx } from '@twind/core';
+import { cn } from '../../lib/utils';
 import {
     createContext,
     type PropsWithChildren,
     useContext,
     useEffect,
     useMemo,
-    useRef,
     useState,
 } from 'react';
 
+// TODO: Add support for prefers-color-scheme
+export const supportedThemes = ['light', 'dark', 'light-red', 'dark-red'] as const;
+export type SupportedThemes = (typeof supportedThemes)[number];
+export const defaultTheme = 'light' satisfies SupportedThemes;
+
+const isSupportedTheme = (theme: string): theme is SupportedThemes => {
+    return supportedThemes.includes(theme as SupportedThemes);
+};
+
+interface ThemeBroadcastMessage {
+    localStorageKey: string;
+    theme: SupportedThemes;
+}
+
 interface ThemeContextType {
     currentTheme: SupportedThemes;
-    setCurrentTheme: (theme: SupportedThemes) => void;
+    setTheme: (theme: SupportedThemes) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -23,63 +35,57 @@ export const ThemeProvider = ({
 }: PropsWithChildren<{
     readonly localStorageKey?: string;
 }>) => {
-    const [internalCurrentTheme, setInternalCurrentTheme] = useState<SupportedThemes>(() => {
-        const storedTheme = localStorage.getItem(localStorageKey);
-        return storedTheme && isSupportedTheme(storedTheme) ? storedTheme : 'base';
-    });
-
-    const isHandlingEvent = useRef(false);
+    const [currentTheme, setCurrentTheme] = useState<SupportedThemes>(defaultTheme);
+    const themeBroadcastChannel = useMemo(() => new BroadcastChannel('theme-change'), []);
 
     useEffect(() => {
-        const handleThemeChange = () => {
-            if (isHandlingEvent.current) {
-                isHandlingEvent.current = false;
-                return;
-            }
-
-            const storedTheme = localStorage.getItem(localStorageKey);
-            if (storedTheme && isSupportedTheme(storedTheme)) {
-                setInternalCurrentTheme(storedTheme);
+        const handleThemeChange = (event: MessageEvent<ThemeBroadcastMessage>) => {
+            const { localStorageKey: eventLocalStorageKey, theme } = event.data;
+            if (eventLocalStorageKey === localStorageKey && isSupportedTheme(theme)) {
+                setCurrentTheme(theme);
             }
         };
 
-        window.addEventListener('themeChange', handleThemeChange);
-        window.addEventListener('storage', handleThemeChange);
+        themeBroadcastChannel.addEventListener('message', handleThemeChange);
+
         return () => {
-            window.removeEventListener('themeChange', handleThemeChange);
-            window.removeEventListener('storage', handleThemeChange);
+            themeBroadcastChannel.removeEventListener('message', handleThemeChange);
+            themeBroadcastChannel.close();
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        const theme = localStorage.getItem(localStorageKey);
+        if (theme && isSupportedTheme(theme)) {
+            setCurrentTheme(theme);
+        }
     }, [localStorageKey]);
 
     const contextValue = useMemo<ThemeContextType>(
         () => ({
-            currentTheme: internalCurrentTheme,
-            setCurrentTheme: newTheme => {
-                setInternalCurrentTheme(newTheme);
+            currentTheme,
+            setTheme: (theme: SupportedThemes) => {
+                if (theme !== currentTheme) {
+                    localStorage.setItem(localStorageKey, theme);
+                    setCurrentTheme(theme);
 
-                localStorage.setItem(localStorageKey, newTheme);
-                isHandlingEvent.current = true;
-                const event = new CustomEvent('themeChange');
-                window.dispatchEvent(event);
+                    themeBroadcastChannel.postMessage({
+                        localStorageKey,
+                        theme,
+                        // eslint-disable-next-line unicorn/require-post-message-target-origin
+                    });
+                }
             },
         }),
-        [internalCurrentTheme, localStorageKey],
+        [currentTheme, localStorageKey, themeBroadcastChannel],
     );
 
     return (
         <ThemeContext.Provider value={contextValue}>
             <div
-                className={cx(
-                    'font-sans text-base m-0 text-foreground',
-                    'base',
-                    internalCurrentTheme,
-                )}
-                style={{
-                    WebkitTextSizeAdjust: '100%',
-                    MozTabSize: '4',
-                    tabSize: '4',
-                    fontFeatureSettings: 'normal',
-                }}
+                className={cn('font-sans text-base m-0 text-foreground bg-background')}
+                data-theme={currentTheme}
             >
                 {children}
             </div>

@@ -1,39 +1,68 @@
-import { ThemeProvider, useTheme } from '@/main';
-import { type SupportedThemes, twindConfig } from '@/twind.config';
+import {
+    defaultTheme,
+    supportedThemes,
+    ThemeProvider,
+} from '../src/components/ThemeProvider/ThemeProvider';
+import { Toaster } from '../src/components/Toast/Toaster';
+// eslint-disable-next-line import/no-unassigned-import
+import '../src/index.css';
 import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { Controls, Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
-import type { Preview } from '@storybook/react';
-import { defineConfig } from '@twind/core';
-import install from '@twind/with-react';
-import { type PropsWithChildren, useEffect } from 'react';
-
-install(defineConfig(twindConfig()));
-
-const ThemeSwitcher = ({ children, theme }: PropsWithChildren<{ theme: SupportedThemes }>) => {
-    const { setCurrentTheme } = useTheme();
-
-    useEffect(() => {
-        setCurrentTheme(theme);
-    });
-
-    return children;
-};
+import { type Preview } from '@storybook/react';
 
 const preview: Preview = {
+    decorators: [
+        (StoryFunction, context) => {
+            const theme = context.globals.theme ?? defaultTheme;
+
+            localStorage.setItem('app-theme', theme); // TODO: Handle changes in non docs mode
+
+            const containerClass = context.viewMode === 'docs' ? 'min-h-52' : 'h-screen';
+
+            return (
+                <ThemeProvider
+                    localStorageKey={
+                        // Use a different localStorage key for the ThemeProvider stories
+                        // to avoid conflicts with the theme selector of storybook
+                        context.id.startsWith('components-themeprovider')
+                            ? 'theme-provider-story'
+                            : undefined
+                    }
+                >
+                    <div
+                        className={
+                            'flex items-center justify-center bg-background p-10 ' + containerClass
+                        }
+                    >
+                        <Toaster />
+                        <StoryFunction />
+                    </div>
+                </ThemeProvider>
+            );
+        },
+    ],
+    globalTypes: {
+        theme: {
+            defaultValue: defaultTheme,
+            description: 'Global theme for components',
+            name: 'Theme',
+            toolbar: {
+                dynamicTitle: true,
+                icon: 'circlehollow',
+                items: supportedThemes.map((theme) => ({
+                    title: theme,
+                    value: theme,
+                })),
+            },
+        },
+    },
     parameters: {
-        layout: 'fullscreen',
         backgrounds: { disable: true },
         controls: {
+            expanded: true,
             matchers: {
                 color: /(background|color)$/iu,
                 date: /date$/iu,
-            },
-            expanded: true,
-        },
-        viewport: {
-            viewports: {
-                ...INITIAL_VIEWPORTS,
-                ...MINIMAL_VIEWPORTS,
             },
         },
         docs: {
@@ -50,46 +79,14 @@ const preview: Preview = {
                 </>
             ),
         },
-    },
-    globalTypes: {
-        theme: {
-            name: 'Theme',
-            description: 'Global theme for components',
-            defaultValue: 'base',
-            toolbar: {
-                icon: 'circlehollow',
-                dynamicTitle: true,
-                items: [
-                    { value: 'base', title: 'Light' },
-                    { value: 'dark', title: 'Dark' },
-                    { value: 'light-green', title: 'Light Green' },
-                    { value: 'dark-green', title: 'Dark Green' },
-                ],
+        layout: 'fullscreen',
+        viewport: {
+            viewports: {
+                ...INITIAL_VIEWPORTS,
+                ...MINIMAL_VIEWPORTS,
             },
         },
     },
-    decorators: [
-        // eslint-disable-next-line unicorn/prevent-abbreviations
-        (StoryFn, context) => {
-            const theme = context.globals.theme || 'base';
-
-            const containerClass = context.viewMode === 'docs' ? 'min-h-52' : 'h-screen';
-
-            return (
-                <ThemeProvider>
-                    <div
-                        className={
-                            'flex items-center justify-center bg-background p-10 ' + containerClass
-                        }
-                    >
-                        <ThemeSwitcher theme={theme}>
-                            <StoryFn />
-                        </ThemeSwitcher>
-                    </div>
-                </ThemeProvider>
-            );
-        },
-    ],
     tags: ['autodocs'],
 };
 

@@ -6,12 +6,11 @@ import {
     SelectLabel,
     SelectTrigger,
     SelectValue,
-} from '@/components/Select/Select';
+} from './Select';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Components/Select',
-    render: args => (
+    render: (args) => (
         <Select {...args}>
             <SelectTrigger>
                 <SelectValue placeholder="Theme" />
@@ -23,6 +22,7 @@ const meta = {
             </SelectContent>
         </Select>
     ),
+    title: 'Components/Select',
 } satisfies Meta<typeof Select>;
 
 export default meta;
@@ -32,7 +32,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const Scrollable: Story = {
-    render: args => (
+    render: (args) => (
         <Select {...args}>
             <SelectTrigger>
                 <SelectValue placeholder="Select a timezone" />

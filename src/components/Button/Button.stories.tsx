@@ -1,20 +1,20 @@
-import { Button } from '@/components/Button/Button';
+import { Button } from './Button';
 import { withActions } from '@storybook/addon-actions/decorator';
 import { type Meta, type StoryObj } from '@storybook/react';
 import { ChevronRightIcon } from 'lucide-react';
 
 const meta = {
-    title: 'Components/Button',
-    component: Button,
     args: {
         children: 'Text',
     },
+    component: Button,
+    decorators: [withActions],
     parameters: {
         actions: {
             handles: ['click'],
         },
     },
-    decorators: [withActions],
+    title: 'Components/Button',
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -55,15 +55,9 @@ export const Link: Story = {
 
 export const Icon: Story = {
     args: {
-        variant: 'outline',
-        size: 'icon',
         children: <ChevronRightIcon />,
-    },
-};
-
-export const Loading: Story = {
-    args: {
-        loading: true,
+        size: 'icon',
+        variant: 'outline',
     },
 };
 

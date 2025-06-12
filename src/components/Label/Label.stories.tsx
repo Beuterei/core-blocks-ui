@@ -1,10 +1,9 @@
-import { Input } from '@/components/Input/Input';
-import { Label } from '@/components/Label/Label';
+import { Input } from '../Input/Input';
+import { Label } from './Label';
 import { faker } from '@faker-js/faker';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Components/Label',
     args: {
         children: 'Email',
     },
@@ -14,6 +13,7 @@ const meta = {
             <Input id={id} placeholder="Email" type="email" />
         </div>
     ),
+    title: 'Components/Label',
 } satisfies Meta<typeof Label>;
 
 export default meta;
