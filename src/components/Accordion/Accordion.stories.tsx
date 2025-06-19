@@ -1,3 +1,4 @@
+import { Button } from '../Button/Button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './Accordion';
 import { type Meta, type StoryObj } from '@storybook/react';
 
@@ -206,15 +207,8 @@ export const WithRichContent: Story = {
                             </div>
                         </div>
                         <div className="flex gap-2">
-                            <button
-                                className="px-3 py-1 bg-primary text-primary-foreground rounded text-sm"
-                                type="button"
-                            >
-                                Learn More
-                            </button>
-                            <button className="px-3 py-1 border rounded text-sm" type="button">
-                                Try Demo
-                            </button>
+                            <Button>Learn More</Button>
+                            <Button variant="outline">Try Demo</Button>
                         </div>
                     </div>
                 </AccordionContent>

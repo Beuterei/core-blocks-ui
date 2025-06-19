@@ -1,19 +1,16 @@
-'use client';
-
 import { cn } from '../../lib/utils';
-import * as LabelPrimitive from '@radix-ui/react-label';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { type ComponentPropsWithoutRef, type ComponentRef, forwardRef } from 'react';
+import { Root as LabelPrimitiveRoot } from '@radix-ui/react-label';
+import { type ComponentProps } from 'react';
 
-const labelVariants = cva(
-    'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
-);
-
-export const Label = forwardRef<
-    ComponentRef<typeof LabelPrimitive.Root>,
-    ComponentPropsWithoutRef<typeof LabelPrimitive.Root> & VariantProps<typeof labelVariants>
->(({ className, ...props }, ref) => (
-    <LabelPrimitive.Root className={cn(labelVariants(), className)} ref={ref} {...props} />
-));
-
-Label.displayName = LabelPrimitive.Root.displayName;
+export const Label = ({ className, ...props }: ComponentProps<typeof LabelPrimitiveRoot>) => {
+    return (
+        <LabelPrimitiveRoot
+            className={cn(
+                'flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
+                className,
+            )}
+            data-slot="label"
+            {...props}
+        />
+    );
+};

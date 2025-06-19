@@ -1,3 +1,4 @@
+import { Button } from '../Button/Button';
 import { Alert, AlertDescription, AlertTitle } from './Alert';
 import { type Meta, type StoryObj } from '@storybook/react';
 import {
@@ -188,15 +189,8 @@ export const LongContent: Story = {
                         security@example.com or call our support line at 1-800-SECURITY.
                     </p>
                     <div className="flex gap-2 mt-4">
-                        <button
-                            className="px-3 py-1 bg-primary text-primary-foreground rounded text-sm"
-                            type="button"
-                        >
-                            Update Password
-                        </button>
-                        <button className="px-3 py-1 border rounded text-sm" type="button">
-                            Learn More
-                        </button>
+                        <Button>Update Password</Button>
+                        <Button variant="outline">Learn More</Button>
                     </div>
                 </div>
             </AlertDescription>
