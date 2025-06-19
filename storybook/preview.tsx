@@ -3,7 +3,6 @@ import {
     supportedThemes,
     ThemeProvider,
 } from '../src/components/ThemeProvider/ThemeProvider';
-import { Toaster } from '../src/components/Toast/Toaster';
 // eslint-disable-next-line import/no-unassigned-import
 import '../src/index.css';
 import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
@@ -34,7 +33,6 @@ const preview: Preview = {
                             'flex items-center justify-center bg-background p-10 ' + containerClass
                         }
                     >
-                        <Toaster />
                         <StoryFunction />
                     </div>
                 </ThemeProvider>

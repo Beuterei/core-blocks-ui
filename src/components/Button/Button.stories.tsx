@@ -1,7 +1,7 @@
 import { Button } from './Button';
 import { withActions } from '@storybook/addon-actions/decorator';
 import { type Meta, type StoryObj } from '@storybook/react';
-import { ChevronRightIcon } from 'lucide-react';
+import { ChevronRightIcon, Loader2Icon } from 'lucide-react';
 
 const meta = {
     args: {
@@ -58,6 +58,18 @@ export const Icon: Story = {
         children: <ChevronRightIcon />,
         size: 'icon',
         variant: 'outline',
+    },
+};
+
+export const Loading: Story = {
+    args: {
+        children: (
+            <>
+                <Loader2Icon className="animate-spin" />
+                Please wait
+            </>
+        ),
+        disabled: true,
     },
 };
 

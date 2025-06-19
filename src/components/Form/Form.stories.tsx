@@ -1,4 +1,3 @@
-import { toast } from '../../hooks/useToast';
 import { Button } from '../Button/Button';
 import { Input } from '../Input/Input';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './Form';
@@ -31,16 +30,7 @@ export const Default: Story = {
             resolver: zodResolver(formSchema),
         });
 
-        const onSubmit = (data: z.infer<typeof formSchema>) => {
-            toast({
-                description: (
-                    <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                        <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-                    </pre>
-                ),
-                title: 'You submitted the following values:',
-            });
-        };
+        const onSubmit = (data: z.infer<typeof formSchema>) => {};
 
         return (
             <FormProvider {...form}>
