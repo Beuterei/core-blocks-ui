@@ -1,6 +1,0 @@
----
-description: 
-globs: 
-alwaysApply: false
----
-Add storybook examples for the mentioned component. Do not change the stroy meta. Do not add custom styling examples. Always use lucid icons
