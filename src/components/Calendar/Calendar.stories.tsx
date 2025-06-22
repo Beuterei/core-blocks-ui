@@ -2,8 +2,6 @@ import { StoryPage } from '../../../storybook/preview';
 import { Calendar, DayButtonComponent } from './Calendar';
 import { type Meta, type StoryObj } from '@storybook/react';
 
-// TODO: add docu link and block link: https://ui.shadcn.com/blocks/calendar
-
 const meta = {
     component: Calendar,
     parameters: {
@@ -12,6 +10,7 @@ const meta = {
                 <StoryPage
                     externalLinks={{
                         'DayPicker Docs': 'https://daypicker.dev',
+                        'More examples': 'https://ui.shadcn.com/blocks/calendar',
                         'Shadcn reference': 'https://ui.shadcn.com/docs/components/calendar',
                     }}
                 />

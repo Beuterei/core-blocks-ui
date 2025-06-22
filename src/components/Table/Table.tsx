@@ -1,7 +1,6 @@
 import { cn } from '../../lib/utils';
 import { type ComponentProps } from 'react';
 
-// TODO: Smth up here
 export const Table = ({ className, ...props }: ComponentProps<'table'>) => (
     <div className="relative w-full overflow-x-auto" data-slot="table-container">
         <table
