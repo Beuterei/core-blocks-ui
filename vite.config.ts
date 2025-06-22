@@ -3,6 +3,8 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import { externalizeDeps } from 'vite-plugin-externalize-deps'
+
 
 export default defineConfig(({ command }) => ({
     build: {
@@ -15,14 +17,6 @@ export default defineConfig(({ command }) => ({
             formats: ['es', 'cjs'],
         },
         outDir: 'dist',
-        rollupOptions: {
-            external: [
-                ...Object.keys(packageJson.dependencies ?? {}),
-                ...Object.keys(packageJson.peerDependencies ?? {}),
-                'react-dom/client',
-                'react/jsx-runtime',
-            ],
-        },
         sourcemap: true,
         // TODO: check more
         cssCodeSplit: true,
@@ -30,6 +24,7 @@ export default defineConfig(({ command }) => ({
     define: command === 'build' ? { 'process.env.NODE_ENV': "'production'" } : undefined,
     plugins: [
         react(),
+        externalizeDeps(),
         dts({
             tsconfigPath: './tsconfig.build.json',
         }),
