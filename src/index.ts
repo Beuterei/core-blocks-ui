@@ -10,6 +10,9 @@ export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle,C
 export { Carousel, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi, CarouselContent} from './components/Carousel/Carousel';
 export { Checkbox } from './components/Checkbox/Checkbox';
 export { Collapsible,CollapsibleContent,CollapsibleTrigger } from './components/Collapsible/Collapsible';
+export { Command, CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandSeparator, CommandItem, CommandShortcut } from './components/Command/Command';
+export { Dialog, DialogTrigger, DialogPortal, DialogClose, DialogOverlay, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from './components/Dialog/Dialog';
+export { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, useFormField } from './components/Form/Form';
 export { Input } from './components/Input/Input';
 export { Label } from './components/Label/Label';
 export { Progress } from './components/Progress/Progress';
@@ -23,4 +26,3 @@ export { ThemeProvider, type SupportedThemes, defaultTheme, supportedThemes, use
 export { Toggle } from './components/Toggle/Toggle';
 export { ToggleGroup, ToggleGroupItem } from './components/ToggleGroup/ToggleGroup';
 export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './components/Tooltip/Tooltip';
-export { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, useFormField } from './components/Form/Form';

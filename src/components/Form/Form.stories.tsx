@@ -12,6 +12,7 @@ const formSchema = z.object({
     }),
 });
 
+// TODO: add all examples and better on submit
 const meta = {
     title: 'Components/Form',
 } satisfies Meta;
