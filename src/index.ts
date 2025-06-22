@@ -29,6 +29,7 @@ export { Separator } from './components/Separator/Separator';
 export { Skeleton } from './components/Skeleton/Skeleton';
 export { Slider } from './components/Slider/Slider';
 export { Switch } from './components/Switch/Switch';
+export { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from './components/Table/Table';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/Tabs/Tabs';
 export { Textarea } from './components/Textarea/Textarea';
 export { ThemeProvider, type SupportedThemes, defaultTheme, supportedThemes, useTheme } from './components/ThemeProvider/ThemeProvider';

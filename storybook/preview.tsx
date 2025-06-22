@@ -34,7 +34,7 @@ export const StoryPage = ({
                             key={name}
                             onMouseEnter={(event) => {
                                 event.currentTarget.style.backgroundColor = 'hsl(222.2 84% 4.9%)';
-                                event.currentTarget.style.opacity = '0.8';
+                                event.currentTarget.style.opacity = '0.85';
                             }}
                             onMouseLeave={(event) => {
                                 event.currentTarget.style.backgroundColor = 'hsl(222.2 84% 4.9%)';
