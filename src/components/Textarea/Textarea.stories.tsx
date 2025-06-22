@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Textarea } from './Textarea';
 import { type Meta, type StoryObj } from '@storybook/react';
 
@@ -6,6 +7,17 @@ const meta = {
         placeholder: 'Text',
     },
     component: Textarea,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/textarea',
+                    }}
+                />
+            ),
+        },
+    },
     title: 'Components/Textarea',
 } satisfies Meta<typeof Textarea>;
 

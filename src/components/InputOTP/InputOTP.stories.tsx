@@ -1,9 +1,27 @@
+import { StoryPage } from '../../../storybook/preview';
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from './InputOTP';
 import { type Meta, type StoryObj } from '@storybook/react';
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
 
 const meta = {
     component: InputOTP,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Input OTP Docs': 'https://input-otp.rodz.dev',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/input-otp',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        InputOTPGroup,
+        InputOTPSeparator,
+        InputOTPSlot,
+    },
     title: 'Components/InputOTP',
 } satisfies Meta<typeof InputOTP>;
 

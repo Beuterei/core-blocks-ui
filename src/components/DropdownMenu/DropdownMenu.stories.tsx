@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Button } from '../Button/Button';
 import {
     DropdownMenu,
@@ -21,6 +22,26 @@ import { type ComponentProps, useState } from 'react';
 
 const meta = {
     component: DropdownMenu,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/dropdown-menu#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/dropdown-menu',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        DropdownMenuCheckboxItem,
+        DropdownMenuContent,
+        DropdownMenuGroup,
+        DropdownMenuItem,
+        DropdownMenuLabel,
+    },
     title: 'Components/DropdownMenu',
 } satisfies Meta<typeof DropdownMenu>;
 

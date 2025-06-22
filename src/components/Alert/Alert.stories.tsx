@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Button } from '../Button/Button';
 import { Alert, AlertDescription, AlertTitle } from './Alert';
 import { type Meta, type StoryObj } from '@storybook/react';
@@ -24,6 +25,21 @@ const meta = {
         variant: 'default',
     },
     component: Alert,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/alert',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        AlertDescription,
+        AlertTitle,
+    },
     title: 'Components/Alert',
 } satisfies Meta<typeof Alert>;
 

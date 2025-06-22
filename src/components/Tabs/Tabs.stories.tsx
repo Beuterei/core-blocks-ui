@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Button } from '../Button/Button';
 import {
     Card,
@@ -14,6 +15,24 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: Tabs,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/tabs#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/tabs',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        TabsContent,
+        TabsList,
+        TabsTrigger,
+    },
     title: 'Components/Tabs',
 } satisfies Meta<typeof Tabs>;
 

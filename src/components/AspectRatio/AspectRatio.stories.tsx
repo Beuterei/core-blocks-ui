@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { AspectRatio } from './AspectRatio';
 import { type Meta, type StoryObj } from '@storybook/react';
 
@@ -14,6 +15,19 @@ export const Default: Story = {
     args: {
         className: 'bg-muted rounded-lg',
         ratio: 16 / 9,
+    },
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/aspect-ratio#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/aspect-ratio',
+                    }}
+                />
+            ),
+        },
     },
     render: (args) => (
         <div className="w-[450px]">

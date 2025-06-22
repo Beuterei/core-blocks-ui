@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import {
     Menubar,
     MenubarCheckboxItem,
@@ -17,6 +18,26 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: Menubar,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/menubar#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/menubar',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        MenubarCheckboxItem,
+        MenubarContent,
+        MenubarItem,
+        MenubarMenu,
+        MenubarRadioGroup,
+    },
     title: 'Components/Menubar',
 } satisfies Meta<typeof Menubar>;
 

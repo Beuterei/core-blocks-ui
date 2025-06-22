@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Input } from '../Input/Input';
 import { Label } from './Label';
 import { type Meta, type StoryObj } from '@storybook/react';
@@ -17,6 +18,20 @@ const DefaultExample = (args: ComponentProps<typeof Label>) => {
 const meta = {
     args: {
         children: 'Email',
+    },
+    component: Label,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/label#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/label',
+                    }}
+                />
+            ),
+        },
     },
     render: DefaultExample,
     title: 'Components/Label',

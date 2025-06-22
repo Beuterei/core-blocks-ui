@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Button } from '../Button/Button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './Accordion';
 import { type Meta, type StoryObj } from '@storybook/react';
@@ -55,6 +56,24 @@ const meta = {
         type: 'single',
     },
     component: Accordion,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/accordion#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/accordion',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        AccordionContent,
+        AccordionItem,
+        AccordionTrigger,
+    },
     title: 'Components/Accordion',
 } satisfies Meta<typeof Accordion>;
 

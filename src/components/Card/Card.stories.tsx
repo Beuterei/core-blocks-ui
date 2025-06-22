@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Avatar, AvatarFallback, AvatarImage } from '../Avatar/Avatar';
 import { Button } from '../Button/Button';
 import {
@@ -27,6 +28,23 @@ import {
 
 const meta = {
     component: Card,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/card',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        CardAction,
+        CardContent,
+        CardDescription,
+        CardFooter,
+    },
     title: 'Components/Card',
 } satisfies Meta<typeof Card>;
 

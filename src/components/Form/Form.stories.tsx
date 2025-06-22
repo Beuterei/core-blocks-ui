@@ -1,9 +1,10 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Button } from '../Button/Button';
 import { Input } from '../Input/Input';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './Form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type Meta, type StoryObj } from '@storybook/react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { Form, FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -14,8 +15,29 @@ const formSchema = z.object({
 
 // TODO: add all examples and better on submit
 const meta = {
+    component: Form,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'React Hook Form Docs': 'https://react-hook-form.com',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/form',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        FormControl,
+        FormDescription,
+        FormField,
+        FormItem,
+        FormLabel,
+        FormMessage,
+    },
     title: 'Components/Form',
-} satisfies Meta;
+} satisfies Meta<typeof Form>;
 
 export default meta;
 

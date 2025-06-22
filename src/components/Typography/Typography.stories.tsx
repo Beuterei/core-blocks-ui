@@ -1,6 +1,18 @@
+import { StoryPage } from '../../../storybook/preview';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/typography',
+                    }}
+                />
+            ),
+        },
+    },
     title: 'Components/Typography',
 } satisfies Meta;
 

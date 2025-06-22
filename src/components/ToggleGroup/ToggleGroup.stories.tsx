@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { ToggleGroup, ToggleGroupItem } from './ToggleGroup';
 import { type Meta, type StoryObj } from '@storybook/react';
 import { Bold, Italic, Underline } from 'lucide-react';
@@ -20,6 +21,22 @@ const meta = {
         type: 'multiple',
     },
     component: ToggleGroup,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/toggle-group#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/toggle-group',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        ToggleGroupItem,
+    },
     title: 'Components/ToggleGroup',
 } satisfies Meta<typeof ToggleGroup>;
 

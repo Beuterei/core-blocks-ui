@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Input } from './Input';
 import { type Meta, type StoryObj } from '@storybook/react';
 
@@ -6,6 +7,17 @@ const meta = {
         placeholder: 'Text',
     },
     component: Input,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/input',
+                    }}
+                />
+            ),
+        },
+    },
     title: 'Components/Input',
 } satisfies Meta<typeof Input>;
 

@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Button } from '../Button/Button';
 import {
     DialogClose,
@@ -15,6 +16,26 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: Dialog,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/dialog#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/dialog',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        DialogClose,
+        DialogContent,
+        DialogDescription,
+        DialogFooter,
+        DialogHeader,
+    },
     title: 'Components/Dialog',
 } satisfies Meta<typeof Dialog>;
 

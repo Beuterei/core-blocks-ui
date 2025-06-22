@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Label } from '../Label/Label';
 import { Checkbox } from './Checkbox';
 import { type Meta, type StoryObj } from '@storybook/react';
@@ -16,8 +17,20 @@ const DefaultExample = (args: ComponentProps<typeof Checkbox>) => {
 };
 
 const meta = {
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/checkbox#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/checkbox',
+                    }}
+                />
+            ),
+        },
+    },
     render: DefaultExample,
-
     title: 'Components/Checkbox',
 } satisfies Meta<typeof Checkbox>;
 

@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Toggle } from './Toggle';
 import { type Meta, type StoryObj } from '@storybook/react';
 import { Bold } from 'lucide-react';
@@ -8,6 +9,19 @@ const meta = {
         children: <Bold className="h-4 w-4" />,
     },
     component: Toggle,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/toggle#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/toggle',
+                    }}
+                />
+            ),
+        },
+    },
     title: 'Components/Toggle',
 } satisfies Meta<typeof Toggle>;
 

@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import {
     ContextMenu,
     ContextMenuCheckboxItem,
@@ -17,6 +18,33 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: ContextMenu,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/context-menu#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/context-menu',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        ContextMenuCheckboxItem,
+        ContextMenuContent,
+        ContextMenuItem,
+        ContextMenuLabel,
+        ContextMenuRadioGroup,
+        ContextMenuRadioItem,
+        ContextMenuSeparator,
+        ContextMenuShortcut,
+        ContextMenuSub,
+        ContextMenuSubContent,
+        ContextMenuSubTrigger,
+        ContextMenuTrigger,
+    },
     title: 'Components/ContextMenu',
 } satisfies Meta<typeof ContextMenu>;
 

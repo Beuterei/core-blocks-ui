@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Label } from '../Label/Label';
 import { Switch } from './Switch';
 import { type Meta, type StoryObj } from '@storybook/react';
@@ -16,6 +17,19 @@ const SwitchWithLabel = (args: ComponentProps<typeof Switch>) => {
 
 const meta = {
     component: Switch,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/switch#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/switch',
+                    }}
+                />
+            ),
+        },
+    },
     render: SwitchWithLabel,
     title: 'Components/Switch',
 } satisfies Meta<typeof Switch>;

@@ -1,8 +1,22 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Separator } from './Separator';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: Separator,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/separator#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/separator',
+                    }}
+                />
+            ),
+        },
+    },
     render: () => (
         <div>
             <div className="space-y-1">

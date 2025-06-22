@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Button } from '../Button/Button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './Collapsible';
 import { type Meta, type StoryObj } from '@storybook/react';
@@ -5,6 +6,23 @@ import { ChevronDownIcon, InfoIcon, SettingsIcon, UserIcon } from 'lucide-react'
 
 const meta = {
     component: Collapsible,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/collapsible#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/collapsible',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        CollapsibleContent,
+        CollapsibleTrigger,
+    },
     title: 'Components/Collapsible',
 } satisfies Meta<typeof Collapsible>;
 

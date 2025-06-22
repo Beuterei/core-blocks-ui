@@ -1,9 +1,21 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Badge } from './Badge';
 import { type Meta, type StoryObj } from '@storybook/react';
 import { X } from 'lucide-react';
 
 const meta = {
     component: Badge,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/badge',
+                    }}
+                />
+            ),
+        },
+    },
     title: 'Components/Badge',
 } satisfies Meta<typeof Badge>;
 

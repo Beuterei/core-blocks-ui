@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import {
     Pagination,
     PaginationContent,
@@ -11,6 +12,24 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: Pagination,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/pagination',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        PaginationContent,
+        PaginationEllipsis,
+        PaginationItem,
+        PaginationLink,
+        PaginationNext,
+    },
     title: 'Components/Pagination',
 } satisfies Meta<typeof Pagination>;
 

@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Avatar, AvatarFallback, AvatarImage } from '../Avatar/Avatar';
 import { Button } from '../Button/Button';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './HoverCard';
@@ -5,6 +6,23 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: HoverCard,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/hover-card#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/hover-card',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        HoverCardContent,
+        HoverCardTrigger,
+    },
     title: 'Components/HoverCard',
 } satisfies Meta<typeof HoverCard>;
 

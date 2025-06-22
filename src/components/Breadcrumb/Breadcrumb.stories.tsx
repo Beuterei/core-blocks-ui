@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import {
     Breadcrumb,
     BreadcrumbEllipsis,
@@ -12,6 +13,24 @@ import { Dot, Home, Slash } from 'lucide-react';
 
 const meta = {
     component: Breadcrumb,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/breadcrumb',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        BreadcrumbEllipsis,
+        BreadcrumbItem,
+        BreadcrumbLink,
+        BreadcrumbList,
+        BreadcrumbPage,
+    },
     title: 'Components/Breadcrumb',
 } satisfies Meta<typeof Breadcrumb>;
 

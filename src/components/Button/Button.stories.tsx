@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Button } from './Button';
 import { withActions } from '@storybook/addon-actions/decorator';
 import { type Meta, type StoryObj } from '@storybook/react';
@@ -12,6 +13,15 @@ const meta = {
     parameters: {
         actions: {
             handles: ['click'],
+        },
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/button',
+                    }}
+                />
+            ),
         },
     },
     title: 'Components/Button',

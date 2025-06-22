@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Card, CardContent } from '../Card/Card';
 import {
     Carousel,
@@ -12,6 +13,24 @@ import { type ComponentProps, useEffect, useState } from 'react';
 
 const meta = {
     component: Carousel,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference': 'https://www.embla-carousel.com/api/',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/carousel',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        CarouselContent,
+        CarouselItem,
+        CarouselNext,
+        CarouselPrevious,
+    },
     title: 'Components/Carousel',
 } satisfies Meta<typeof Carousel>;
 

@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import { useIsDesktop } from '../../hooks/useMediaQuery';
 import { cn } from '../../lib/utils';
 import { Button } from '../Button/Button';
@@ -26,6 +27,25 @@ import { useState } from 'react';
 
 const meta = {
     component: Drawer,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/drawer',
+                        'Vaul Docs': 'https://vaul.emilkowal.ski/getting-started',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        DrawerClose,
+        DrawerContent,
+        DrawerDescription,
+        DrawerFooter,
+        DrawerHeader,
+    },
     title: 'Components/Drawer',
 } satisfies Meta<typeof Drawer>;
 

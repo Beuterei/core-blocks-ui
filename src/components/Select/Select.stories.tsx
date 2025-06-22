@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import {
     Select,
     SelectContent,
@@ -25,6 +26,26 @@ const meta = {
         ),
     },
     component: Select,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/select#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/select',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        SelectContent,
+        SelectGroup,
+        SelectItem,
+        SelectLabel,
+        SelectTrigger,
+    },
     title: 'Components/Select',
 } satisfies Meta<typeof Select>;
 

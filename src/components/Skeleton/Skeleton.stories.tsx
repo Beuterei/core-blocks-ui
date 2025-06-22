@@ -1,8 +1,20 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Skeleton } from './Skeleton';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: Skeleton,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/skeleton',
+                    }}
+                />
+            ),
+        },
+    },
     render: () => (
         <div className="flex flex-col space-y-3">
             <Skeleton className="h-[125px] w-[250px] rounded-xl" />

@@ -1,8 +1,26 @@
+import { StoryPage } from '../../../storybook/preview';
 import { Avatar, AvatarFallback, AvatarImage } from './Avatar';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: Avatar,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        'API reference':
+                            'https://www.radix-ui.com/primitives/docs/components/avatar#api-reference',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/avatar',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        AvatarFallback,
+        AvatarImage,
+    },
     title: 'Components/Avatar',
 } satisfies Meta<typeof Avatar>;
 

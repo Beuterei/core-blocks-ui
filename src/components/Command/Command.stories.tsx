@@ -1,3 +1,4 @@
+import { StoryPage } from '../../../storybook/preview';
 import {
     Command,
     CommandDialog,
@@ -15,6 +16,25 @@ import { useEffect, useState } from 'react';
 
 const meta = {
     component: Command,
+    parameters: {
+        docs: {
+            page: () => (
+                <StoryPage
+                    externalLinks={{
+                        '⌘K Docs': 'https://cmdk.paco.me',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/command',
+                    }}
+                />
+            ),
+        },
+    },
+    subcomponents: {
+        CommandDialog,
+        CommandEmpty,
+        CommandGroup,
+        CommandInput,
+        CommandItem,
+    },
     title: 'Components/Command',
 } satisfies Meta<typeof Command>;
 
