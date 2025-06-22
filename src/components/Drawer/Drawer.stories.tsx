@@ -27,6 +27,9 @@ import { useState } from 'react';
 
 const meta = {
     component: Drawer,
+    globals: {
+        containerClassName: 'min-h-200',
+    },
     parameters: {
         docs: {
             page: () => (
@@ -101,21 +104,19 @@ export const Default: Story = {
     },
 };
 
-const ProfileForm = ({ className }: React.ComponentProps<'form'>) => {
-    return (
-        <form className={cn('grid items-start gap-6', className)}>
-            <div className="grid gap-3">
-                <Label htmlFor="email">Email</Label>
-                <Input defaultValue="beuluis@example.com" id="email" type="email" />
-            </div>
-            <div className="grid gap-3">
-                <Label htmlFor="username">Username</Label>
-                <Input defaultValue="@beuluis" id="username" />
-            </div>
-            <Button type="submit">Save changes</Button>
-        </form>
-    );
-};
+const ProfileForm = ({ className }: React.ComponentProps<'form'>) => (
+    <form className={cn('grid items-start gap-6', className)}>
+        <div className="grid gap-3">
+            <Label htmlFor="email">Email</Label>
+            <Input defaultValue="beuluis@example.com" id="email" type="email" />
+        </div>
+        <div className="grid gap-3">
+            <Label htmlFor="username">Username</Label>
+            <Input defaultValue="@beuluis" id="username" />
+        </div>
+        <Button type="submit">Save changes</Button>
+    </form>
+);
 
 const ResponsiveExample = () => {
     const [open, setOpen] = useState(false);

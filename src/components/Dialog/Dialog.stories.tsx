@@ -16,6 +16,9 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: Dialog,
+    globals: {
+        containerClassName: 'min-h-100',
+    },
     parameters: {
         docs: {
             page: () => (

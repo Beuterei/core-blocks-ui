@@ -7,6 +7,9 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: Popover,
+    globals: {
+        containerClassName: 'min-h-150',
+    },
     parameters: {
         docs: {
             page: () => (

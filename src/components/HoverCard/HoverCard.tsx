@@ -1,4 +1,5 @@
 import { cn } from '../../lib/utils';
+import { useTheme } from '../ThemeProvider/ThemeProvider';
 import {
     Content as HoverCardPrimitiveContent,
     Portal as HoverCardPrimitivePortal,
@@ -23,8 +24,10 @@ export const HoverCardContent = ({
     sideOffset = 4,
     ...props
 }: ComponentProps<typeof HoverCardPrimitiveContent>) => {
+    const { containers } = useTheme();
+
     return (
-        <HoverCardPrimitivePortal data-slot="hover-card-portal">
+        <HoverCardPrimitivePortal container={containers?.hoverCard} data-slot="hover-card-portal">
             <HoverCardPrimitiveContent
                 align={align}
                 className={cn(

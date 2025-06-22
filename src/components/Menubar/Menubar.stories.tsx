@@ -18,6 +18,9 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: Menubar,
+    globals: {
+        containerClassName: 'min-h-150',
+    },
     parameters: {
         docs: {
             page: () => (

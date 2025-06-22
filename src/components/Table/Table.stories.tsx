@@ -100,6 +100,13 @@ const meta = {
             ),
         },
     },
+    subcomponents: {
+        TableCaption,
+        TableCell,
+        TableFooter,
+        TableHead,
+        TableHeader,
+    },
     title: 'Components/Table',
 } satisfies Meta<typeof Table>;
 

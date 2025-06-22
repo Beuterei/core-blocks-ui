@@ -13,8 +13,16 @@ export const supportedThemes = ['light', 'dark', 'light-red', 'dark-red'] as con
 export type SupportedThemes = (typeof supportedThemes)[number];
 export const defaultTheme = 'light' satisfies SupportedThemes;
 
+type PortalContainer = DocumentFragment | Element | null;
+
 const isSupportedTheme = (theme: string): theme is SupportedThemes => {
     return supportedThemes.includes(theme as SupportedThemes);
+};
+
+const isPortalContainer = (container: unknown): container is PortalContainer => {
+    return (
+        container instanceof DocumentFragment || container instanceof Element || container === null
+    );
 };
 
 interface ThemeBroadcastMessage {
@@ -23,6 +31,18 @@ interface ThemeBroadcastMessage {
 }
 
 interface ThemeContextType {
+    containers: {
+        contextMenu: PortalContainer;
+        dialog: PortalContainer;
+        drawer: PortalContainer;
+        dropdownMenu: PortalContainer;
+        hoverCard: PortalContainer;
+        menubar: PortalContainer;
+        popover: PortalContainer;
+        select: PortalContainer;
+        sheet: PortalContainer;
+        tooltip: PortalContainer;
+    };
     currentTheme: SupportedThemes;
     setTheme: (theme: SupportedThemes) => void;
 }
@@ -31,8 +51,23 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({
     children,
+    containers,
     localStorageKey = 'app-theme',
 }: PropsWithChildren<{
+    readonly containers?:
+        | PortalContainer
+        | {
+              contextMenu?: PortalContainer;
+              dialog?: PortalContainer;
+              drawer?: PortalContainer;
+              dropdownMenu?: PortalContainer;
+              hoverCard?: PortalContainer;
+              menubar?: PortalContainer;
+              popover?: PortalContainer;
+              select?: PortalContainer;
+              sheet?: PortalContainer;
+              tooltip?: PortalContainer;
+          };
     readonly localStorageKey?: string;
 }>) => {
     const [currentTheme, setCurrentTheme] = useState<SupportedThemes>(defaultTheme);
@@ -62,8 +97,26 @@ export const ThemeProvider = ({
         }
     }, [localStorageKey]);
 
-    const contextValue = useMemo<ThemeContextType>(
-        () => ({
+    const contextValue = useMemo<ThemeContextType>(() => {
+        const defaultContainer = document.body;
+        const containerConfig = isPortalContainer(containers) ? {} : containers;
+        const fallbackContainer = isPortalContainer(containers)
+            ? (containers ?? defaultContainer)
+            : defaultContainer;
+
+        return {
+            containers: {
+                contextMenu: containerConfig?.contextMenu ?? fallbackContainer,
+                dialog: containerConfig?.dialog ?? fallbackContainer,
+                drawer: containerConfig?.drawer ?? fallbackContainer,
+                dropdownMenu: containerConfig?.dropdownMenu ?? fallbackContainer,
+                hoverCard: containerConfig?.hoverCard ?? fallbackContainer,
+                menubar: containerConfig?.menubar ?? fallbackContainer,
+                popover: containerConfig?.popover ?? fallbackContainer,
+                select: containerConfig?.select ?? fallbackContainer,
+                sheet: containerConfig?.sheet ?? fallbackContainer,
+                tooltip: containerConfig?.tooltip ?? fallbackContainer,
+            },
             currentTheme,
             setTheme: (theme: SupportedThemes) => {
                 if (theme !== currentTheme) {
@@ -77,9 +130,8 @@ export const ThemeProvider = ({
                     });
                 }
             },
-        }),
-        [currentTheme, localStorageKey, themeBroadcastChannel],
-    );
+        };
+    }, [containers, currentTheme, localStorageKey, themeBroadcastChannel]);
 
     return (
         <ThemeContext.Provider value={contextValue}>

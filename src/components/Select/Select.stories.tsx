@@ -26,6 +26,9 @@ const meta = {
         ),
     },
     component: Select,
+    globals: {
+        containerClassName: 'min-h-100',
+    },
     parameters: {
         docs: {
             page: () => (

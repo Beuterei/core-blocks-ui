@@ -22,6 +22,9 @@ import { type ComponentProps, useState } from 'react';
 
 const meta = {
     component: DropdownMenu,
+    globals: {
+        containerClassName: 'min-h-250',
+    },
     parameters: {
         docs: {
             page: () => (

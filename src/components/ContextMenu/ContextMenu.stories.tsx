@@ -18,6 +18,9 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
     component: ContextMenu,
+    globals: {
+        containerClassName: 'min-h-200',
+    },
     parameters: {
         docs: {
             page: () => (
