@@ -20,12 +20,16 @@ export { HoverCard, HoverCardContent, HoverCardTrigger } from './components/Hove
 export { Input } from './components/Input/Input';
 export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from './components/InputOTP/InputOTP';
 export { Label } from './components/Label/Label';
+export { Menubar, MenubarMenu, MenubarGroup, MenubarPortal, MenubarRadioGroup, MenubarTrigger, MenubarContent, MenubarItem, MenubarCheckboxItem, MenubarRadioItem, MenubarLabel, MenubarSeparator, MenubarShortcut, MenubarSub, MenubarSubTrigger, MenubarSubContent } from './components/Menubar/Menubar';
+export { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from './components/Pagination/Pagination';
+export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './components/Popover/Popover';
 export { Progress } from './components/Progress/Progress';
 export { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator} from './components/Select/Select';
 export { Separator } from './components/Separator/Separator';
 export { Skeleton } from './components/Skeleton/Skeleton';
 export { Slider } from './components/Slider/Slider';
 export { Switch } from './components/Switch/Switch';
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/Tabs/Tabs';
 export { Textarea } from './components/Textarea/Textarea';
 export { ThemeProvider, type SupportedThemes, defaultTheme, supportedThemes, useTheme } from './components/ThemeProvider/ThemeProvider';
 export { Toggle } from './components/Toggle/Toggle';
