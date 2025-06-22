@@ -1,5 +1,5 @@
 import {
-    type Select,
+    Select,
     SelectContent,
     SelectGroup,
     SelectItem,
@@ -24,6 +24,7 @@ const meta = {
             </>
         ),
     },
+    component: Select,
     title: 'Components/Select',
 } satisfies Meta<typeof Select>;
 
