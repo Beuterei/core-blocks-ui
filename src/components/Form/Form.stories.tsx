@@ -30,7 +30,10 @@ export const Default: Story = {
             resolver: zodResolver(formSchema),
         });
 
-        const onSubmit = (data: z.infer<typeof formSchema>) => {};
+        const onSubmit = (data: z.infer<typeof formSchema>) => {
+            // eslint-disable-next-line no-console
+            console.log(data);
+        };
 
         return (
             <FormProvider {...form}>

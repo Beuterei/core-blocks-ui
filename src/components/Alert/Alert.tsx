@@ -22,36 +22,30 @@ export const Alert = ({
     className,
     variant,
     ...props
-}: ComponentProps<'div'> & VariantProps<typeof alertVariants>) => {
-    return (
-        <div
-            className={cn(alertVariants({ variant }), className)}
-            data-slot="alert"
-            role="alert"
-            {...props}
-        />
-    );
-};
+}: ComponentProps<'div'> & VariantProps<typeof alertVariants>) => (
+    <div
+        className={cn(alertVariants({ variant }), className)}
+        data-slot="alert"
+        role="alert"
+        {...props}
+    />
+);
 
-export const AlertTitle = ({ className, ...props }: ComponentProps<'div'>) => {
-    return (
-        <div
-            className={cn('col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight', className)}
-            data-slot="alert-title"
-            {...props}
-        />
-    );
-};
+export const AlertTitle = ({ className, ...props }: ComponentProps<'div'>) => (
+    <div
+        className={cn('col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight', className)}
+        data-slot="alert-title"
+        {...props}
+    />
+);
 
-export const AlertDescription = ({ className, ...props }: ComponentProps<'div'>) => {
-    return (
-        <div
-            className={cn(
-                'text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed',
-                className,
-            )}
-            data-slot="alert-description"
-            {...props}
-        />
-    );
-};
+export const AlertDescription = ({ className, ...props }: ComponentProps<'div'>) => (
+    <div
+        className={cn(
+            'text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed',
+            className,
+        )}
+        data-slot="alert-description"
+        {...props}
+    />
+);
