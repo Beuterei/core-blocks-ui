@@ -11,29 +11,31 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => (
-        <Avatar>
-            <AvatarImage alt="@beuluis" src="https://github.com/beuluis.png" />
-            <AvatarFallback>BL</AvatarFallback>
-        </Avatar>
-    ),
+    args: {
+        children: (
+            <>
+                <AvatarImage alt="@beuluis" src="https://github.com/beuluis.png" />
+                <AvatarFallback>BL</AvatarFallback>
+            </>
+        ),
+    },
 };
 
 export const WithFallback: Story = {
-    render: () => (
-        <Avatar>
-            <AvatarImage alt="User" src="" />
-            <AvatarFallback>JD</AvatarFallback>
-        </Avatar>
-    ),
+    args: {
+        children: (
+            <>
+                <AvatarImage alt="User" src="" />
+                <AvatarFallback>JD</AvatarFallback>
+            </>
+        ),
+    },
 };
 
 export const FallbackOnly: Story = {
-    render: () => (
-        <Avatar>
-            <AvatarFallback>AB</AvatarFallback>
-        </Avatar>
-    ),
+    args: {
+        children: <AvatarFallback>AB</AvatarFallback>,
+    },
 };
 
 export const CustomSize: Story = {
@@ -78,10 +80,12 @@ export const Group: Story = {
 };
 
 export const WithBrokenImage: Story = {
-    render: () => (
-        <Avatar>
-            <AvatarImage alt="Broken" src="https://broken-link.jpg" />
-            <AvatarFallback>BK</AvatarFallback>
-        </Avatar>
-    ),
+    args: {
+        children: (
+            <>
+                <AvatarImage alt="Broken" src="https://broken-link.jpg" />
+                <AvatarFallback>BK</AvatarFallback>
+            </>
+        ),
+    },
 };

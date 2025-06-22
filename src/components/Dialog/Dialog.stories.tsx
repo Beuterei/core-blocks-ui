@@ -23,8 +23,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => (
-        <Dialog>
+    args: {
+        children: (
             <form>
                 <DialogTrigger asChild>
                     <Button variant="outline">Open Dialog</Button>
@@ -54,6 +54,6 @@ export const Default: Story = {
                     </DialogFooter>
                 </DialogContent>
             </form>
-        </Dialog>
-    ),
+        ),
+    },
 };

@@ -1,14 +1,14 @@
 import { Label } from '../Label/Label';
 import { Switch } from './Switch';
 import { type Meta, type StoryObj } from '@storybook/react';
-import React, { useId } from 'react';
+import { type ComponentProps, useId } from 'react';
 
-const SwitchWithLabel = (args: React.ComponentProps<typeof Switch>) => {
+const SwitchWithLabel = (args: ComponentProps<typeof Switch>) => {
     const id = useId();
 
     return (
         <div className="flex items-center space-x-2">
-            <Switch id={id} {...args} />
+            <Switch {...args} id={id} />
             <Label htmlFor={id}>Switch</Label>
         </div>
     );

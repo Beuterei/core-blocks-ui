@@ -18,7 +18,4 @@ export const Default: Story = {
         className: 'rounded-md border shadow-sm',
         mode: 'single',
     },
-    render: (args) => {
-        return <Calendar {...args} />;
-    },
 };
