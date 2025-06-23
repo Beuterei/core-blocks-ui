@@ -27,7 +27,7 @@ export const HoverCardContent = ({
     const { containers } = useTheme();
 
     return (
-        <HoverCardPrimitivePortal container={containers?.hoverCard} data-slot="hover-card-portal">
+        <HoverCardPrimitivePortal container={containers.hoverCard} data-slot="hover-card-portal">
             <HoverCardPrimitiveContent
                 align={align}
                 className={cn(

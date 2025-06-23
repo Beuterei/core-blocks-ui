@@ -78,7 +78,7 @@ export const MenubarContent = ({
     const { containers } = useTheme();
 
     return (
-        <MenubarPortal container={containers?.menubar}>
+        <MenubarPortal container={containers.menubar}>
             <MenubarPrimitiveContent
                 align={align}
                 alignOffset={alignOffset}

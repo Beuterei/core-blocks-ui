@@ -41,7 +41,7 @@ export const DrawerContent = ({
     const { containers } = useTheme();
 
     return (
-        <DrawerPortal container={containers?.drawer} data-slot="drawer-portal">
+        <DrawerPortal container={containers.drawer} data-slot="drawer-portal">
             <DrawerOverlay />
             <DrawerPrimitive.Content
                 className={cn(

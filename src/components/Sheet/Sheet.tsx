@@ -51,7 +51,7 @@ const SheetContent = ({
     const { containers } = useTheme();
 
     return (
-        <SheetPortal container={containers?.sheet}>
+        <SheetPortal container={containers.sheet}>
             <SheetOverlay />
             <SheetPrimitiveContent
                 className={cn(

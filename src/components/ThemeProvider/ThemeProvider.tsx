@@ -32,6 +32,7 @@ interface ThemeBroadcastMessage {
 
 interface ThemeContextType {
     containers: {
+        alertDialog: PortalContainer;
         contextMenu: PortalContainer;
         dialog: PortalContainer;
         drawer: PortalContainer;
@@ -57,6 +58,7 @@ export const ThemeProvider = ({
     readonly containers?:
         | PortalContainer
         | {
+              alertDialog?: PortalContainer;
               contextMenu?: PortalContainer;
               dialog?: PortalContainer;
               drawer?: PortalContainer;
@@ -106,6 +108,7 @@ export const ThemeProvider = ({
 
         return {
             containers: {
+                alertDialog: containerConfig?.alertDialog ?? fallbackContainer,
                 contextMenu: containerConfig?.contextMenu ?? fallbackContainer,
                 dialog: containerConfig?.dialog ?? fallbackContainer,
                 drawer: containerConfig?.drawer ?? fallbackContainer,

@@ -26,7 +26,7 @@ export const PopoverContent = ({
     const { containers } = useTheme();
 
     return (
-        <PopoverPrimitivePortal container={containers?.popover}>
+        <PopoverPrimitivePortal container={containers.popover}>
             <PopoverPrimitiveContent
                 align={align}
                 className={cn(
