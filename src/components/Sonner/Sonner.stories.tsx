@@ -11,9 +11,8 @@ const meta = {
             page: () => (
                 <StoryPage
                     externalLinks={{
-                        'API reference':
-                            'https://www.radix-ui.com/primitives/docs/components/scroll-area#api-reference',
-                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/scroll-area',
+                        'Shadcn reference': 'https://ui.shadcn.com/docs/components/sonner',
+                        'Sonner Docs': 'https://sonner.emilkowal.ski',
                     }}
                 />
             ),
