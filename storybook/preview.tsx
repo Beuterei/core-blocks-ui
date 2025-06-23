@@ -1,10 +1,11 @@
+import { Toaster } from '../src/components/Sonner/Sonner';
+// eslint-disable-next-line import/no-unassigned-import
+import '../src/index.css';
 import {
     defaultTheme,
     supportedThemes,
     ThemeProvider,
 } from '../src/components/ThemeProvider/ThemeProvider';
-// eslint-disable-next-line import/no-unassigned-import
-import '../src/index.css';
 import { cn } from '../src/lib/utils';
 import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { Controls, Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
@@ -101,7 +102,7 @@ const preview: Preview = {
                 >
                     <div
                         className={cn(
-                            'flex items-center justify-center bg-background p-10',
+                            'flex items-center justify-center p-10',
                             containerClassName,
                             context.globals.containerClassName,
                         )}
@@ -109,6 +110,7 @@ const preview: Preview = {
                     >
                         <StoryFunction />
                     </div>
+                    <Toaster />
                 </ThemeProvider>
             );
         },

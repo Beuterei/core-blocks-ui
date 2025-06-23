@@ -14,6 +14,7 @@ import {
 } from '@radix-ui/react-alert-dialog';
 import { type ComponentProps } from 'react';
 
+// TODO: adapt deps to peer deps for external wrapped libs
 export const AlertDialog = ({ ...props }: ComponentProps<typeof AlertDialogPrimitiveRoot>) => (
     <AlertDialogPrimitiveRoot data-slot="alert-dialog" {...props} />
 );

@@ -34,6 +34,7 @@ export { Separator } from './components/Separator/Separator';
 export { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from './components/Sheet/Sheet';
 export { Skeleton } from './components/Skeleton/Skeleton';
 export { Slider } from './components/Slider/Slider';
+export { Toaster} from './components/Sonner/Sonner';
 export { Switch } from './components/Switch/Switch';
 export { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from './components/Table/Table';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/Tabs/Tabs';

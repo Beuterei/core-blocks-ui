@@ -2,7 +2,7 @@ import { StoryPage } from '../../../storybook/preview';
 import { Separator } from '../Separator/Separator';
 import { ScrollArea, ScrollBar } from './ScrollArea';
 import { type Meta, type StoryObj } from '@storybook/react';
-import * as React from 'react';
+import { Fragment } from 'react';
 
 const meta = {
     component: ScrollArea,
@@ -37,10 +37,10 @@ export const Default: Story = {
             <div className="p-4">
                 <h4 className="mb-4 text-sm leading-none font-medium">Tags</h4>
                 {tags.map((tag) => (
-                    <React.Fragment key={tag}>
+                    <Fragment key={tag}>
                         <div className="text-sm">{tag}</div>
                         <Separator className="my-2" />
-                    </React.Fragment>
+                    </Fragment>
                 ))}
             </div>
         ),

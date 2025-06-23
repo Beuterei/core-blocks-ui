@@ -5,6 +5,7 @@ import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessa
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type Meta, type StoryObj } from '@storybook/react';
 import { Form, FormProvider, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -13,7 +14,7 @@ const formSchema = z.object({
     }),
 });
 
-// TODO: add all examples and better on submit
+// TODO: add all examples
 const meta = {
     component: Form,
     parameters: {
@@ -54,8 +55,13 @@ export const Default: Story = {
         });
 
         const onSubmit = (data: z.infer<typeof formSchema>) => {
-            // eslint-disable-next-line no-console
-            console.log(data);
+            toast('Form submitted', {
+                description: (
+                    <pre className="bg-muted p-3 rounded text-xs overflow-x-auto">
+                        <code>{JSON.stringify(data, null, 2)}</code>
+                    </pre>
+                ),
+            });
         };
 
         return (
