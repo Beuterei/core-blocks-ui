@@ -123,7 +123,6 @@ const useChart = () => {
     return context;
 };
 
-// Helper to extract item config from a payload.
 const getPayloadConfigFromPayload = (config: ChartConfig, payload: unknown, key: string) => {
     if (typeof payload !== 'object' || payload === null) {
         return undefined;

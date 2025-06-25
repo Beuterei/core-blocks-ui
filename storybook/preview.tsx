@@ -1,6 +1,6 @@
-import { Toaster } from '../src/components/Sonner/Sonner';
 // eslint-disable-next-line import/no-unassigned-import
 import '../src/index.css';
+import { Toaster } from '../src/components/Sonner/Sonner';
 import {
     defaultTheme,
     supportedThemes,
