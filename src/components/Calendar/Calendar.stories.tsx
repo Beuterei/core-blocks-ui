@@ -10,7 +10,7 @@ const meta = {
                 <StoryPage
                     externalLinks={{
                         'DayPicker Docs': 'https://daypicker.dev',
-                        'More examples': 'https://ui.shadcn.com/blocks/calendar',
+                        'More Examples': 'https://ui.shadcn.com/blocks/calendar',
                         'Shadcn reference': 'https://ui.shadcn.com/docs/components/calendar',
                     }}
                 />
