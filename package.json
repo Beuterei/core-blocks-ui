@@ -27,7 +27,6 @@
   "peerDependencies": {
     "lucide-react": "^0",
     "react": "^19",
-    "@hookform/resolvers": "^5",
     "cmdk": "^1",
     "date-fns": "^4",
     "input-otp": "^1",
