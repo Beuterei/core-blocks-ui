@@ -50,7 +50,6 @@ export const H4: Story = {
     ),
 };
 
-// Paragraph component
 export const Paragraph: Story = {
     render: () => (
         <p className="leading-7 [&:not(:first-child)]:mt-6">
@@ -60,7 +59,6 @@ export const Paragraph: Story = {
     ),
 };
 
-// Blockquote component
 export const Blockquote: Story = {
     render: () => (
         <blockquote className="mt-6 border-l-2 pl-6 italic">
@@ -70,7 +68,6 @@ export const Blockquote: Story = {
     ),
 };
 
-// Table component
 export const Table: Story = {
     render: () => (
         <div className="my-6 w-full overflow-y-auto">
@@ -116,7 +113,6 @@ export const Table: Story = {
     ),
 };
 
-// List component
 export const List: Story = {
     render: () => (
         <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
@@ -127,7 +123,6 @@ export const List: Story = {
     ),
 };
 
-// Inline code component
 export const InlineCode: Story = {
     render: () => (
         <code className="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
@@ -136,7 +131,6 @@ export const InlineCode: Story = {
     ),
 };
 
-// Lead text component
 export const Lead: Story = {
     render: () => (
         <p className="text-muted-foreground text-xl">
@@ -145,17 +139,14 @@ export const Lead: Story = {
     ),
 };
 
-// Large text component
 export const Large: Story = {
     render: () => <div className="text-lg font-semibold">Are you absolutely sure?</div>,
 };
 
-// Small text component
 export const Small: Story = {
     render: () => <small className="text-sm leading-none font-medium">Email address</small>,
 };
 
-// Muted text component
 export const Muted: Story = {
     render: () => <p className="text-muted-foreground text-sm">Enter your email address.</p>,
 };

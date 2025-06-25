@@ -31,9 +31,14 @@ export const DropdownMenuPortal = ({
 );
 
 export const DropdownMenuTrigger = ({
+    className,
     ...props
 }: ComponentProps<typeof DropdownMenuPrimitiveTrigger>) => (
-    <DropdownMenuPrimitiveTrigger data-slot="dropdown-menu-trigger" {...props} />
+    <DropdownMenuPrimitiveTrigger
+        className={cn('cursor-pointer', className)}
+        data-slot="dropdown-menu-trigger"
+        {...props}
+    />
 );
 
 export const DropdownMenuContent = ({

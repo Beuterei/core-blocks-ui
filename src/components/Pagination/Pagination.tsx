@@ -30,7 +30,7 @@ type PaginationLinkProps = ComponentProps<'a'> &
         readonly isActive?: boolean;
     };
 
-// TODO: add support for other navigation elements
+// TODO: add support for other navigation elements using asChild
 export const PaginationLink = ({
     children,
     className,

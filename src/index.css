@@ -42,7 +42,7 @@
     --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* TODO: Adapt colors */
+/* TODO: add more themes */
 [data-theme] {
     --radius: 0.5rem;
     --background: oklch(1 0 0);

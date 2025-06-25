@@ -18,7 +18,6 @@ export default defineConfig(({ command }) => ({
         },
         outDir: 'dist',
         sourcemap: true,
-        // TODO: check more
         cssCodeSplit: true,
     },
     define: command === 'build' ? { 'process.env.NODE_ENV': "'production'" } : undefined,
