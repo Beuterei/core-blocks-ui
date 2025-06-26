@@ -25,11 +25,11 @@
     "build:storybook": "storybook build --config-dir storybook"
   },
   "peerDependencies": {
-    "lucide-react": "^0",
-    "react": "^19",
     "cmdk": "^1",
     "date-fns": "^4",
     "input-otp": "^1",
+    "lucide-react": "^0",
+    "react": "^19",
     "react-day-picker": "^9",
     "react-hook-form": "^7",
     "recharts": "^3",
@@ -98,6 +98,7 @@
     "@radix-ui/react-toggle-group": "^1.1.10",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@tailwindcss/vite": "^4.1.10",
+    "broadcast-channel": "7.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",

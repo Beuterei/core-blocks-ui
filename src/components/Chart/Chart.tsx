@@ -19,9 +19,12 @@ import {
 import { type NameType, type ValueType } from 'recharts/types/component/DefaultTooltipContent';
 
 // Format: { THEME_NAME: CSS_SELECTOR }
+// Exclude "system" since it resolves to actual themes (light/dark)
 const THEMES = Object.fromEntries(
-    supportedThemes.map((theme) => [theme, `[data-theme="${theme}"]`]),
-) as Record<SupportedThemes, string>;
+    supportedThemes
+        .filter((theme) => theme !== 'system')
+        .map((theme) => [theme, `[data-theme="${theme}"]`]),
+) as Record<Exclude<SupportedThemes, 'system'>, string>;
 export type ChartConfig = Record<
     string,
     {

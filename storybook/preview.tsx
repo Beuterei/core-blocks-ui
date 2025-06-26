@@ -77,9 +77,7 @@ const preview: Preview = {
     decorators: [
         (StoryFunction, context) => {
             const [container, setContainer] = useState<HTMLDivElement>();
-            const theme = context.globals.theme ?? defaultTheme;
-
-            localStorage.setItem('app-theme', theme); // TODO: Handle changes in non docs mode
+            const theme = context.globals.theme;
 
             const containerClassName = context.viewMode === 'docs' ? 'min-h-52' : 'h-screen';
 
@@ -99,6 +97,7 @@ const preview: Preview = {
                             ? 'theme-provider-story'
                             : undefined
                     }
+                    theme={theme}
                 >
                     <div
                         className={cn(

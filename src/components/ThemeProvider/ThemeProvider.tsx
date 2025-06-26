@@ -1,15 +1,16 @@
 import { cn } from '../../lib/utils';
+import { BroadcastChannel } from 'broadcast-channel';
 import {
     createContext,
     type PropsWithChildren,
+    useCallback,
     useContext,
     useEffect,
     useMemo,
     useState,
 } from 'react';
 
-// TODO: Add support for prefers-color-scheme
-export const supportedThemes = ['light', 'dark', 'light-red', 'dark-red'] as const;
+export const supportedThemes = ['light', 'dark', 'light-red', 'dark-red', 'system'] as const;
 export type SupportedThemes = (typeof supportedThemes)[number];
 export const defaultTheme = 'light' satisfies SupportedThemes;
 
@@ -54,6 +55,7 @@ export const ThemeProvider = ({
     children,
     containers,
     localStorageKey = 'app-theme',
+    theme,
 }: PropsWithChildren<{
     readonly containers?:
         | PortalContainer
@@ -71,33 +73,79 @@ export const ThemeProvider = ({
               tooltip?: PortalContainer;
           };
     readonly localStorageKey?: string;
+    readonly theme?: SupportedThemes;
 }>) => {
-    const [currentTheme, setCurrentTheme] = useState<SupportedThemes>(defaultTheme);
-    const themeBroadcastChannel = useMemo(() => new BroadcastChannel('theme-change'), []);
+    const [currentTheme, setCurrentTheme] = useState<SupportedThemes>(theme ?? defaultTheme);
+    const [currentSystemTheme, setCurrentSystemTheme] = useState<SupportedThemes>('light');
+    const themeBroadcastChannel: BroadcastChannel<ThemeBroadcastMessage> = useMemo(
+        () => new BroadcastChannel('theme-change', { webWorkerSupport: false }),
+        [],
+    );
 
     useEffect(() => {
-        const handleThemeChange = (event: MessageEvent<ThemeBroadcastMessage>) => {
-            const { localStorageKey: eventLocalStorageKey, theme } = event.data;
-            if (eventLocalStorageKey === localStorageKey && isSupportedTheme(theme)) {
-                setCurrentTheme(theme);
+        const setSystemTheme = (isDark: boolean) => {
+            if (isDark) {
+                setCurrentSystemTheme('dark');
+            } else {
+                setCurrentSystemTheme('light');
             }
         };
 
-        themeBroadcastChannel.addEventListener('message', handleThemeChange);
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
 
-        return () => {
-            themeBroadcastChannel.removeEventListener('message', handleThemeChange);
-            themeBroadcastChannel.close();
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (mq.matches) {
+            setSystemTheme(true);
+        }
+
+        const handleChange = (event: MediaQueryListEvent) => setSystemTheme(event.matches);
+        mq.addEventListener('change', handleChange);
+
+        return () => mq.removeEventListener('change', handleChange);
     }, []);
 
     useEffect(() => {
-        const theme = localStorage.getItem(localStorageKey);
+        themeBroadcastChannel.onmessage = ({
+            localStorageKey: eventLocalStorageKey,
+            theme: eventTheme,
+        }) => {
+            if (eventLocalStorageKey === localStorageKey && isSupportedTheme(eventTheme)) {
+                setCurrentTheme(eventTheme);
+            }
+        };
+
+        return () => {
+            void themeBroadcastChannel.close();
+        };
+    }, [localStorageKey, themeBroadcastChannel]);
+
+    useEffect(() => {
+        const localStorageTheme = localStorage.getItem(localStorageKey);
+        if (localStorageTheme && isSupportedTheme(localStorageTheme)) {
+            setCurrentTheme(localStorageTheme);
+        }
+    }, [localStorageKey]);
+
+    useEffect(() => {
         if (theme && isSupportedTheme(theme)) {
             setCurrentTheme(theme);
         }
-    }, [localStorageKey]);
+    }, [theme]);
+
+    const setNewTheme = useCallback(
+        (newTheme: SupportedThemes) => {
+            if (newTheme !== currentTheme) {
+                localStorage.setItem(localStorageKey, newTheme);
+                setCurrentTheme(newTheme);
+
+                void themeBroadcastChannel.postMessage({
+                    localStorageKey,
+                    theme: newTheme,
+                    // eslint-disable-next-line unicorn/require-post-message-target-origin
+                });
+            }
+        },
+        [currentTheme, localStorageKey, setCurrentTheme, themeBroadcastChannel],
+    );
 
     const contextValue = useMemo<ThemeContextType>(() => {
         const defaultContainer = document.body;
@@ -121,26 +169,15 @@ export const ThemeProvider = ({
                 tooltip: containerConfig?.tooltip ?? fallbackContainer,
             },
             currentTheme,
-            setTheme: (theme: SupportedThemes) => {
-                if (theme !== currentTheme) {
-                    localStorage.setItem(localStorageKey, theme);
-                    setCurrentTheme(theme);
-
-                    themeBroadcastChannel.postMessage({
-                        localStorageKey,
-                        theme,
-                        // eslint-disable-next-line unicorn/require-post-message-target-origin
-                    });
-                }
-            },
+            setTheme: setNewTheme,
         };
-    }, [containers, currentTheme, localStorageKey, themeBroadcastChannel]);
+    }, [containers, currentTheme, setNewTheme]);
 
     return (
         <ThemeContext.Provider value={contextValue}>
             <div
                 className={cn('font-sans text-base m-0 text-foreground bg-background')}
-                data-theme={currentTheme}
+                data-theme={currentTheme === 'system' ? currentSystemTheme : currentTheme}
             >
                 {children}
             </div>
