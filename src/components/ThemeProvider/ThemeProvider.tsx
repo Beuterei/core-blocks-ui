@@ -10,11 +10,24 @@ import {
     useState,
 } from 'react';
 
-export const supportedThemes = ['light', 'dark', 'light-red', 'dark-red', 'system'] as const;
-export type SupportedThemes = (typeof supportedThemes)[number];
+export type SupportedThemes = `${BaseThemes[number]}-${ColorVariants[number]}` | BaseThemes[number];
+type BaseThemes = ['dark', 'light', 'system'];
+// Add more color variants here. They will be combined with the base themes to create the supported themes.
+type ColorVariants = ['red'];
+
+export const supportedThemes = [
+    'light',
+    'dark',
+    'system',
+    'light-red',
+    'dark-red',
+    'system-red',
+] as const;
 export const defaultTheme = 'light' satisfies SupportedThemes;
 
 type PortalContainer = DocumentFragment | Element | null;
+
+type SystemThemes = 'dark' | 'light';
 
 const isSupportedTheme = (theme: string): theme is SupportedThemes => {
     return supportedThemes.includes(theme as SupportedThemes);
@@ -24,6 +37,21 @@ const isPortalContainer = (container: unknown): container is PortalContainer => 
     return (
         container instanceof DocumentFragment || container instanceof Element || container === null
     );
+};
+
+// Determine the theme in case of a system theme
+// Lets say system-red is selected and the current system theme is dark we get dark-red as applied theme
+const getComposedTheme = (currentTheme: SupportedThemes, currentSystemTheme: SystemThemes) => {
+    const splitTheme = currentTheme.split('-');
+    if (splitTheme[0] === 'system') {
+        if (splitTheme.length === 1) {
+            return currentSystemTheme;
+        }
+
+        return `${currentSystemTheme}-${splitTheme[1]}`;
+    }
+
+    return currentTheme;
 };
 
 interface ThemeBroadcastMessage {
@@ -75,8 +103,10 @@ export const ThemeProvider = ({
     readonly localStorageKey?: string;
     readonly theme?: SupportedThemes;
 }>) => {
-    const [currentTheme, setCurrentTheme] = useState<SupportedThemes>(theme ?? defaultTheme);
-    const [currentSystemTheme, setCurrentSystemTheme] = useState<SupportedThemes>('light');
+    const [currentTheme, setCurrentTheme] = useState<SupportedThemes>(
+        theme && isSupportedTheme(theme) ? theme : defaultTheme,
+    );
+    const [currentSystemTheme, setCurrentSystemTheme] = useState<SystemThemes>('light');
     const themeBroadcastChannel: BroadcastChannel<ThemeBroadcastMessage> = useMemo(
         () => new BroadcastChannel('theme-change', { webWorkerSupport: false }),
         [],
@@ -177,7 +207,7 @@ export const ThemeProvider = ({
         <ThemeContext.Provider value={contextValue}>
             <div
                 className={cn('font-sans text-base m-0 text-foreground bg-background')}
-                data-theme={currentTheme === 'system' ? currentSystemTheme : currentTheme}
+                data-theme={getComposedTheme(currentTheme, currentSystemTheme)}
             >
                 {children}
             </div>

@@ -22,9 +22,10 @@ import { type NameType, type ValueType } from 'recharts/types/component/DefaultT
 // Exclude "system" since it resolves to actual themes (light/dark)
 const THEMES = Object.fromEntries(
     supportedThemes
-        .filter((theme) => theme !== 'system')
+        .filter((theme) => !theme.startsWith('system'))
         .map((theme) => [theme, `[data-theme="${theme}"]`]),
-) as Record<Exclude<SupportedThemes, 'system'>, string>;
+) as Record<Exclude<SupportedThemes, `system${string}`>, string>;
+
 export type ChartConfig = Record<
     string,
     {
